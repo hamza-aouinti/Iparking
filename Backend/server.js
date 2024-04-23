@@ -16,7 +16,7 @@ const app = express();
 // Mongodb Config
 const { mongoose } = require('./db.js');
 
-
+console.log("test")
 
 const admin = require('./routes/adminController');
 const superviseur = require('./routes/superviseurController');
