@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark text-centre" style="  background-color: darken(#2b303a);" >
+  <img src="assets/images/ll.png" style="height: 50px;  ">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container">
+    <div class="navbar-menu" id="navbar-brand-centered" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+      <ul class="nav">
+        <li>
+          <a class="brand" routerLink="/map" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <p>{{'navbar.Home' | translate }}</p>
+          </a>
+        </li>
+        <li>
+
+        <li>
+          <a class="brand" routerLink="/pres" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <p>{{'navbar.MAP' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="brand" *ngIf="auth.loggedIn()" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" (click)="navigateToResource()">
+            <p>{{'navbar.CHAT' | translate }}</p>
+          </a>
+        </li>
+         <li class="nav-item">
+          <a class="brand"   *ngIf="admin !='true'" routerLink="/reservation-c" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <p>{{'navbar.CONSULTER' | translate }}</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="brand" routerLink="/contact" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <p> {{'navbar.CONTACT' | translate }}</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="brand" *ngIf="!auth.loggedIn()" routerLink="/login" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <p>{{'navbar.Login' | translate }}</p>
+          </a>
+          <a class="brand" style="cursor:pointer" *ngIf="auth.loggedIn()"  (click)="logoutUser()" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+            <p>{{'navbar.Logout' | translate }}</p>
+          </a>
+        </li>
+
+        <li class="nav-item ">
+          <select (change)="filterChanged($event.target.value)" class="form-control " [value]='fr' ([ngModel])="selected" style="height: 40px; width: 75px; margin-top: 11px; border: 2px solid white; color: white; font-size: medium; background-color: #353a40; text-align: center;">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: white;" > <p> {{lang}} </p></option>
+          </select>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+

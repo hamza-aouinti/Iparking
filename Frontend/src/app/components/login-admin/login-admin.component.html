@@ -1,0 +1,55 @@
+<header>
+  <div class="headerwrapper">
+
+      <div class="header-right" >
+        <a>
+          <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" style="height: 30px; width: 75px;  border: 2px solid white ;margin-right: 40px; background-color: #63add8; color: white; font-size: medium;  ">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(15, 15, 15);" > <p> {{lang}} </p></option>
+          </select>
+        </a>
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+
+
+
+<body>
+  <div class="logcontainer">
+
+    <div class="form-container sign-in-container">
+      <form id="Login">
+        <h1>{{'Login.signin'| translate}}</h1>
+          <input type="email" class="form-control"  [(ngModel)]="loginUserData.email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{'Login.E'| translate}}">
+          <input type="password" class="form-control" [(ngModel)]="loginUserData.password" name="password" id="exampleInputPassword1" placeholder="{{'Login.P'| translate}}">
+          <!--<div class="forgot">
+            <a href="reset.html" routerLink="/forgot">{{'Login.F'| translate}}</a>
+          </div>-->
+          <br>
+          <button type="submit" class="btn btn-primary float-right"  (click)="loginUser()" >
+            <span class="wc-editable" data-pk="ws_btn_choose_your_space" data-type="action" >{{'Login.L'| translate}}</span>
+          </button>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>{{'Login.H'| translate}}</h1>
+          <p>{{'Login.Enter'| translate}}</p>
+          <button class="ghost" id="signUp" routerLink="/registerAdmin">{{'Login.signup'| translate}}</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</body>
+<footer>
+	<p>
+    {{'Welcome.Des'| translate}}		<a target="_blank" href="https://treetronix.com/">Treetronix</a>
+	</p>
+</footer>

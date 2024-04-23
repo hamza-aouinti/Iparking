@@ -1,0 +1,108 @@
+<div class="testbox">
+  <form action="/">
+
+      <div>
+        <a>
+          <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" style="margin-left:1150px; height: 30px;  background: #fff;
+          width: 75px; border: 2px solid rgb(194, 191, 191)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);" > <p> {{lang}} </p></option>
+          </select>
+        </a>
+      </div>
+
+
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading panel-heading-no-divider"> <i class="fa fa-cogs "> &nbsp;</i> {{'License.L1'|translate}}</div>
+
+              <div class="table-responsive" *ngIf="this.freeLicenseDays <= 14 && Boolean == false  ; else elseBlock1">
+                <!--<div class="table-responsive" >-->
+
+                <table class="table">
+                  <thead>
+                    <tr >
+                      <th >{{'License.L2'|translate}} </th>
+                      <th>{{'License.L3'|translate}}</th>
+                      <th>{{'License.L4'|translate}}</th>
+                      <th>{{'License.L5'|translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>IParking</th>
+                      <th scope="col">{{'License.L8'|translate}}</th>
+                      <th scope="col">{{NbrFreeDevices}}</th>
+                      <th scope="col"> {{date | date }}</th>
+
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ng-template #elseBlock1>
+                <div *ngIf="Boolean === false ; else elseBlock2">
+                  <div>
+                    <h1 class="gl-mt-0" >{{'License.L9'|translate}}</h1>
+                  </div>
+                  <div>
+                    <p class="lead gl-mb-6">
+                      {{'License.L10'|translate}}
+                    </p>
+                  </div>
+                  <hr>
+                  <div>
+                    <h5>
+                      {{'License.L11'|translate}} </h5>
+                    <br>
+                    <input class="form-control-lg" style="width:350px;color:black" type="text" [(ngModel)]="licenseKey" />
+                    <button class="form-control-lg" style="margin-left: 10px;" type="submit" (click)="ActivateLicense()">{{'HOME.Button1'|translate}} </button>
+                    </div>
+                </div>
+                </ng-template>
+                <ng-template #elseBlock2>
+                  <table *ngIf="Boolean === true" class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                    <tr>
+                      <th scope="col"> </th>
+                      <th scope="col"> </th>
+                      <th scope="col"> </th>
+                      <th scope="col"> </th>
+                      <th scope="col"> </th>
+                      <th colspan="3">
+                      </th>
+
+                    </tr>
+                    <tr>
+                      <th scope="col">{{'License.L2'|translate}} </th>
+                      <th scope="col">{{'License.L6'|translate}}</th>
+                      <th scope="col">{{'License.L5'|translate}}</th>
+                      <th scope="col">{{'License.L3'|translate}}</th>
+                      <th scope="col">{{'License.L4'|translate}}</th>
+                      <th scope="col">Validity</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                      <!--<td>{{company}}</td>-->
+                      <td>IParking</td>
+                      <td>{{start| date: 'yyyy-MM-dd' : 'UTC'}}</td>
+                      <td>{{expired| date: 'yyyy-MM-dd' : 'UTC'}}</td>
+                      <td>{{key}}</td>
+                      <td>{{nbdevice}}</td>
+                      <td scope="col">
+                        <div  *ngIf=" validity==true " style="width:20px;height:20px;" ><img src="assets/images/active.png"></div>
+                        <div *ngIf=" validity==false " style="width:20px;height:20px;" ><img src="assets/images/red-cross.png"></div>
+                      </td>
+                    </tr>
+                  </table>
+                </ng-template>
+
+
+
+
+
+
+
+
+
+
+         </div>
+  </form>
+</div>

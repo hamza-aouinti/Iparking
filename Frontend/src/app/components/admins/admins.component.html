@@ -1,0 +1,88 @@
+<div class="testbox">
+  <form action="/" class="form">
+
+    <div class="row row-stat">
+
+    <div class="col-md-6">
+      <div class="panel panel-default panel-table">
+        <div class="panel-heading panel-heading-no-divider">{{'admin.ad24'|translate}}</div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+
+                    <th>{{'admin.ad25'|translate}}</th>
+                    <th>{{'admin.ad20'|translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let m of listAdmin">
+                    <td>{{m.email}}</td>
+                    <td>
+                      <a class="action-btn" (click)="onDeletee(m._id)">
+                        <i class="fa fa-trash" ></i>
+
+                    </a>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+       </div>
+
+
+
+    </div>
+    <div class="col-md-6">
+      <a>
+        <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" style="margin-left:520px; margin-top:9px;height: 30px;  background: #fff;
+        width: 75px; border: 2px solid rgb(194, 191, 191)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+          <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);" > <p> {{lang}} </p></option>
+        </select>
+      </a>
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-divider">{{'admin.ad26'|translate}}</div>
+          <div class="panel-body">
+            <div class="xs-mt-10 xs-mb-10  ">
+              <div class="row">
+                <div class="col-md-8">
+                  <form class="form-horizontal">
+
+
+
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-sm-4 control-label" for="form-control-2">{{'admin.ad25'|translate}}</label>
+                        <div class="col-sm-8">
+                          <input type="text" [(ngModel)]="registerUserData.email" name="email" class="form-control rounded-0" required>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <label class="col-sm-4 control-label" for="form-control-2">{{'admin.ad27'|translate}}</label>
+                        <div class="col-sm-8">
+                          <input type="password" [(ngModel)]="registerUserData.password" name="password" class="form-control rounded-0" required>                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="btn-block">
+                      <button type="button"  (click)="registerUser()" class="btn btn-success">{{'admin.ad14'|translate}}</button>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+</div>
+</div>
+
+</form>
+</div>

@@ -1,0 +1,118 @@
+<div class="testbox">
+
+  <form action="/">
+
+    <!--traduction-->
+    <div>
+      <a>
+        <select (change)="LanguageChanged($event.target.value)" [value]='fr' ([ngModel])="selected" style="margin-left:1150px;height: 30px;  background: #fff;
+          width: 75px; border: 2px solid rgb(194, 191, 191)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+          <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);">
+            <p> {{lang}} </p>
+          </option>
+        </select>
+      </a>
+    </div>
+
+    <!--statictique-->
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider"> <i class="far fa-chart-bar"></i> {{'Dashboard.d1'|translate}}
+      </div>
+      <nav class="navbar navbar-expand-sm  navbar-dark">
+        <ul class="navbar-nav">
+        </ul>
+      </nav>
+    </div>
+
+    <!--input select reservation-->
+    <label for="location_id" class="formLabel">
+      <h3 style="color: rgb(87, 85, 85);">{{'admin.ad1'|translate}}</h3>
+    </label>
+    <select (change)="parkData($event.target.value)" class="form-control form-control-lg" ([ngModel])="selected">
+      <option></option>
+      <option class="form-control form-control-lg" *ngFor="let m of listParks" style="font-size: 16px;" [ngValue]="m">
+        {{m.name}}
+      </option>
+    </select>
+
+
+    <!--les rectangles-->
+    <div class="container" style="margin-top:10px">
+      <div class="row row-stat">
+        <div class="col-md-3">
+          <div class="card-counter primary">
+            <i class="fa fa-map-marker"></i>
+            <span class="count-numbers">{{NbrPlaces}}</span>
+            <span class="count-name">{{'admin.ad2'|translate}}</span>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card-counter danger">
+            <i class="fa fa-users"></i>
+            <span class="count-numbers">{{NbrReservedPlaces}}</span>
+            <span class="count-name">{{'admin.ad3'|translate}}</span>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-counter success">
+            <i class="fa fa-car"></i>
+            <span class="count-numbers">{{NbrPlacesAttributed}}</span>
+            <span class="count-name">{{'admin.ad4'|translate}}</span>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card-counter info">
+            <i class="fa fa-dollar"></i>
+            <span class="count-numbers">{{PrixDesDebut}} </span>
+            <span class="count-name">{{'admin.ad5'|translate}} (dt)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--revenu / label-->
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider"><i class="fa fa-history"></i> {{'Dashboard.d2'|translate}}
+      </div>
+      <div class="panel-heading panel-heading-no-divider" style="font-size: 20px;"><i class="fa fa-comment-dollar"></i>
+        {{'admin.ad53'|translate}}
+        <input style="margin-left: 10px; font-size: 20px;" ngModel="{{this.PrixDesDebut}}" disabled>
+      </div>
+    </div>
+
+    <!--deux dates-->
+    <div class="row">
+      <div class="col-md-4">
+        <label for="" class="formLabel">{{'admin.ad50'|translate}}</label>
+        <input type="date" class="form-control form-control-lg" name="date1" [(ngModel)]="dateone">
+      </div>
+      <div class="col-md-4">
+        <label for="" class="formLabel">{{'admin.ad51'|translate}}</label>
+        <input type="date" class="form-control form-control-lg" name="date2" [(ngModel)]="datetwo">
+      </div>
+      <div class="col-md-4">
+        <button type="button" (click)="show()" class="btn btn-primary">{{'admin.ad52'|translate}}</button>
+
+      </div>
+
+    </div>
+
+
+
+    <!--chart-->
+    <div style="margin-top: 100px;">
+      <canvas id="myChart" style="width: auto; height:auto;"></canvas>
+    </div>
+
+    <!--chart historique-->
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider"><i class="fa fa-history"></i> {{'Dashboard.d3'|translate}}</div>
+
+      <div style="margin-top: 100px;">
+        <canvas id="myCharttwo" style="width: auto; height:auto;"></canvas>
+      </div>
+
+    </div>

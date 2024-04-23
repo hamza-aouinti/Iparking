@@ -1,0 +1,59 @@
+<header>
+  <div class="headerwrapper">
+
+      <div class="header-right" >
+        <a>
+          <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" style="height: 30px; width: 75px;  border: 2px solid white ;margin-right: 40px; background-color: #63add8; color: white; font-size: medium;  ">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(15, 15, 15);" > <p> {{lang}} </p></option>
+          </select>
+        </a>
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+
+<body>
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form class="form">
+        <h1>{{'Register.R1'|translate}}
+        </h1>
+
+          <h5>{{'Register.R2'|translate}}</h5>
+
+
+          <input type="text" class="form-control" [(ngModel)]="registerUserData.username" name="email" placeholder="{{'Register.R3'|translate}}">
+
+
+
+          <input type="email" class="form-control" [(ngModel)]="registerUserData.email" name="email" id="exampleInputEmail1" placeholder="{{'Register.R4'|translate}}" >
+
+        <div class="alert alert-danger" role="alert" *ngIf="valid == true" >
+        </div>
+
+
+          <input type="password" class="form-control" [(ngModel)]="registerUserData.password"  name="password" id="exampleInputPassword1" placeholder="{{'Register.R5'|translate}}">
+          <input type="text" class="form-control" [(ngModel)]="registerUserData.license"  name="license" id="exampleInputLicense" hidden>
+
+        <div class="alert alert-danger" role="alert" *ngIf="length == true" >
+        </div>
+        <button type="button"  (click)="registerUser()" class="btn btn-primary float-right">{{'HOME.Button1'|translate}}</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>{{'Register.R6'|translate}}</h1>
+          <p>{{'Register.R7'|translate}}</p>
+          <button class="ghost" id="signIn" routerLink="/loginadmin">{{'Register.R8'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+  <footer>
+    <p>
+      {{'Welcome.Des'|translate}}
+      <a target="_blank" href="https://treetronix.com/">Treetronix</a>
+    </p>
+  </footer>

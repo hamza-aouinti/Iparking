@@ -1,0 +1,109 @@
+<div class="testbox">
+  <form action="/">
+      <!--<label for="location_id" class="formLabel">
+        <h3 class="wc-editable" data-pk="ws_location"data-type="text" style="margin-top: 10px; color: rgb(77, 90, 102);"> Choose Parking</h3>
+      </label>
+      <select (change)="selectedPark($event.target.value)" name="location_id" id="location_id" class="form-control form-control-lg" class="form-control form-control-lg">
+        <option></option>
+        <option class="form-control form-control-lg" *ngFor="let m of marker" style="font-size: 16px;"  [ngValue]="m">{{m.name}}</option>
+      </select>-->
+      <div>
+        <a>
+          <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" style="margin-left:1150px; height: 30px;  background: #fff;
+          width: 75px; border: 2px solid rgb(194, 191, 191)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);" > <p> {{lang}} </p></option>
+          </select>
+        </a>
+      </div>
+      <div class="panel panel-default panel-table">
+        <div class="panel-heading panel-heading-no-divider"><i class="fa fa-search"></i> {{'admin.ad8'|translate}}</div>
+        <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: rgb(229, 232, 235); margin-top:20px;">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <div class="item">
+                <p>{{'Reservation.r1'|translate}}</p>
+                <input type="text" placeholder="{{'admin.ad6'|translate}}" [(ngModel)]="searchMat" style="border-radius: 5px;">
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="item" style="margin-left: 40px;">
+                <p>{{'Reservation.r2'|translate}}</p>
+                <input type="text" placeholder="{{'admin.ad7'|translate}}" [(ngModel)]="ParksearchName" style="border-radius: 5px;">
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="item" style="margin-left: 40px;">
+                <p>{{'Reservation.r3'|translate}}</p>
+                <input type="text" placeholder="{{'Reservation.r8'|translate}}" [(ngModel)]="PlacesearchName" style="border-radius: 5px;">
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="item" style="margin-left: 40px;">
+                <p>{{'Reservation.r4'|translate}} </p>
+                <input type="text" placeholder="{{'Reservation.r10'|translate}}" [(ngModel)]="dateDsearch" style="border-radius: 5px;">
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="item" style="margin-left: 40px;">
+                <p>{{'Reservation.r5'|translate}} </p>
+                <input type="text" placeholder="{{'Reservation.r11'|translate}}" [(ngModel)]="dateFsearch" style="border-radius: 5px;">
+              </div>
+            </li>
+            </ul>
+        </nav>
+        <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: rgb(229, 232, 235); ">
+          <ul class="navbar-nav">
+
+
+            <li class="nav-item">
+              <div class="item" >
+                <p>{{'Reservation.r6'|translate}} </p>
+                <input type="text" placeholder="{{'Reservation.r12'|translate}}" [(ngModel)]="timeDsearch" style="border-radius: 5px;">
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="item" style="margin-left: 40px;">
+                <p>{{'Reservation.r7'|translate}} </p>
+                <input type="text" placeholder="{{'Reservation.r13'|translate}}" [(ngModel)]="timeFsearch" style="border-radius: 5px;">
+              </div>
+            </li>
+            </ul>
+        </nav>
+        </div>
+
+
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading panel-heading-no-divider"> <i class="fa fa-list "></i>  {{'admin.ad9'|translate}}</div>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{{'HOME.Reg Number'|translate}} </th>
+                      <th>{{'HOME.Park'|translate}}</th>
+                      <th>{{'HOME.Place'|translate}}</th>
+                      <th>{{'HOME.EntryD'|translate}}</th>
+                      <th>{{'HOME.EntryT'|translate}}</th>
+                      <th>{{'HOME.ExitD'|translate}}</th>
+                      <th>{{'HOME.ExitT'|translate}}</th>
+                      <th>{{'HOME.Total'|translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let m of ListRes |filterMat:searchMat|filterRes:ParksearchName |filterPlaceName:PlacesearchName | dateDpipe:dateDsearch|dateFpipe:dateFsearch|timeDpipe:timeDsearch | timeFpipe:timeFsearch">
+                      <td>{{m.matricule}}</td>
+                      <td>{{m.park}}</td>
+                      <td>{{m.palce}}</td>
+                      <td name="date">{{m.dateDebut}}</td>
+                      <td>{{m.timeDebut}}</td>
+                      <td>{{m.dateFin}}</td>
+                      <td>{{m.timeFin}}</td>
+                      <td>{{m.totalPrice}}</td>
+
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+         </div>
+  </form>
+</div>

@@ -1,0 +1,16 @@
+<div class="window">
+<div class="main">
+      <div class="container">
+        <div class="content1">
+          <button class="close" (click)="onCloseDialog()">
+            <i class="fa fa-window-close" style="color: rgb(155, 150, 150); margin-left: 130px;" ></i>
+          </button>
+        </div>
+        <div class="content2">
+          <button type="button" nbButton outline class="btn btn-secondary" (click)="stylestreet()" class="map" >Streets style</button>
+          <button type="button" nbButton outline class="btn btn-secondary" (click)="stylesatelite()" class="map" style="margin: 3px;">Satellite style</button>
+        </div>
+        <div id="map-mapbox1"></div>
+      </div>
+  </div>
+</div>

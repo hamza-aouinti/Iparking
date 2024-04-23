@@ -1,0 +1,15 @@
+version: "2"
+services:
+  app:
+    container_name: server  
+    build: .
+    environment:
+      - MONGODB_URL=mongodb://localhost:27017/pfes
+    ports:
+      - "3000"
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+

@@ -1,0 +1,41 @@
+.btn-block {
+  margin-top: 10px;
+  text-align: center;
+  margin-left: 140px;
+  }
+  input,button,select {
+    width: calc(100% - 10px);
+    padding: 5px;
+    }
+    select{
+      height: 35px;
+      font-size: 15px;
+    }
+  button {
+
+  border: none;
+  border-radius: 5px;
+  background: #0087cc;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  }
+  button:hover {
+  background: #6eb8dd;
+  }
+  .testbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    margin-left: 220px;
+    padding: 20px;
+
+    }
+    .form {
+    width: 100%;
+
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 25px 0 #d6e0f5;
+    }

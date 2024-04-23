@@ -1,0 +1,214 @@
+<div class="testbox">
+  <form action="/">
+    <div>
+      <a>
+        <select (change)="LanguageChanged($event.target.value)" [value]='fr' ([ngModel])="Selected" style="margin-left:1170px; height: 30px;  background: #fff;
+        width: 75px; border: 2px solid rgb(194, 191, 191)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+          <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);">
+            <p> {{lang}} </p>
+          </option>
+        </select>
+      </a>
+    </div>
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider"> <i class="fa fa-plus-square"></i> {{'admin.ad28'|translate}}
+      </div>
+      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(229, 232, 235);">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button (click)="onOpenDialog()" style="width: 150px;"> <i class="fa fa-plus"></i>
+              {{'admin.ad29'|translate}}</button>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider"><i class="fa fa-search"></i> {{'admin.ad8'|translate}}</div>
+      <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: rgb(229, 232, 235);">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <div class="item">
+              <p>{{'admin.ad30'|translate}}</p>
+              <input type="text" placeholder="{{'admin.ad31'|translate}}" [(ngModel)]="searchID"
+                style="border-radius: 5px;">
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="item" style="margin-left: 10px;">
+              <p>{{'Reservation.r3'|translate}}</p>
+              <input type="text" placeholder="{{'admin.ad16'|translate}}" [(ngModel)]="searchName"
+                style="border-radius: 5px; border-color: rgb(146, 146, 145);">
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="item" style="margin-left: 10px;">
+              <p>{{'Reservation.r2'|translate}}</p>
+              <input type="text" placeholder="{{'Reservation.r9'|translate}}" [(ngModel)]="parkName"
+                style="border-radius: 5px; border-color: rgb(146, 146, 145);">
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="item" style="margin-left: 10px;">
+              <p>{{'Reservation.r17'|translate}}</p>
+              <select (change)="fetchData($event.target.value)" ([ngModel])="selectedState" style="height: 25px;"
+                style="border-radius: 5px;">
+                <option></option>
+                <option style="width:20px;height:20px;background-color:blue">
+                  <font size="-1">{{'Reservation.r15'|translate}}</font>
+                </option>
+                <option style="width:20px;height:20px;background-color:#FF8C00;">
+                  <font size="-1">{{'Reservation.r16'|translate}}</font>
+                </option>
+                <option style="width:20px;height:20px;background-color:red;">
+                  <font size="-1">{{'Reservation.r18'|translate}}</font>
+                </option>
+                <option style="width:20px;height:20px;background-color:#228B22;">
+                  <font size="-1">{{'Reservation.r19'|translate}}</font>
+                </option>
+                <option style="width:20px;height:20px;background-color:rgb(255, 251, 22);">
+                  <font size="-1">{{'Reservation.r20'|translate}}</font>
+                </option>
+              </select>
+            </div>
+          </li>
+          <div></div>
+          <!--<li class="nav-item">
+                <div class="item" style="margin-left: 10px;">
+                  <p>Choose Park</p>
+        <select (change)="filterChanged($event.target.value)"  ([ngModel])="selected" style="height: 25px;" style="border-radius: 5px;">
+          <option ></option>
+          <option  *ngFor="let m of marker" style="font-size: 15px;" [ngValue]="m.name">{{m.name}}</option>
+        </select>
+                </div>
+              </li>-->
+        </ul>
+      </nav>
+    </div>
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider"><i class="fa fa-map-marker"></i> {{'admin.ad33'|translate}}
+      </div>
+
+      <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: rgb(229, 232, 235); ">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="buttons" Buttonlabel="List" (click)="List=true; Map=false"><i class="fa fa-list "></i>
+              {{'admin.ad22'|translate}}</button>
+          </li>
+          <li class="nav-item">
+            <button class="buttons" Buttonlabel="Map" (click)="List=false; Map=true" style="margin-left: 10px;"><i
+                class="fa fa-map-marker "></i> {{'admin.ad21'|translate}}</button>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+    <div class="table-wrapper" *ngIf="List">
+      <div class="table-title">
+        <div class="row">
+
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>{{'Places.C1'|translate}}</th>
+            <th>{{'Places.C2'|translate}}</th>
+            <th>{{'Places.C3'|translate}}</th>
+            <th>{{'Places.C4'|translate}}</th>
+            <th>{{'Places.C5'|translate}}</th>
+            <th>{{'Places.C6'|translate}} &nbsp;(Volt)</th>
+            <th>{{'Reservation.r14'|translate}} </th>
+            <th>{{'Places.C7'|translate}}</th>
+            <th>{{'Places.C8'|translate}}</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="let place of listPlaces | filtername:searchName |filterID:searchID | filterPark:parkName ; let i=index">
+            <!--<tr *ngFor="let place of listPlaces" >-->
+            <td>{{place.code}}</td>
+            <td>{{place.name}}</td>
+            <td>{{place.park}}</td>
+            <td>
+              <div *ngIf=" place.reserved==true " style="width:20px;height:20px;background-color:#FF8C00;">
+                <font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+              </div>
+              <div *ngIf=" place.reserved==false " style="width:20px;height:20px;background-color:blue;">
+                <font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+              </div>
+            </td>
+            <td>
+              <!--<div *ngIf=" place.attributed==true " style="width: 20px; height: 20px;  "><div style="width:20px;height:20px;background-color:#228B22;" >
+                    <font size="-1"> </font>
+                  </div> </div>
+                    <div *ngIf="place.attributed==false " style="width: 20px; height: 20px;">   <div style="width:20px;height:20px;background-color:red;" >
+                      <font size="-1"> </font>
+                    </div> </div>-->
+              <div *ngIf=" place.Capteur[place.Capteur.length - 1].status== 1 " style="width: 20px; height: 20px;  ">
+                <div style="width:20px;height:20px;background-color:#228B22;">
+                  <font size="-1"> </font>
+                </div>
+              </div>
+              <div *ngIf="place.Capteur[place.Capteur.length - 1].status == 0 " style="width: 20px; height: 20px;">
+                <div style="width:20px;height:20px;background-color:red;">
+                  <font size="-1"> </font>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div>
+                {{place.Capteur[place.Capteur.length - 1].battery}}
+              </div>
+            </td>
+            <td (click)="onOpenHistoric(place.name)">
+              <i class="fa fa-history"></i>
+            </td>
+            <td>
+              <div *ngIf=" place.reserved==false && place.Capteur[place.Capteur.length - 1].status== 1"
+                style="width:20px;height:20px;background-color:rgb(255, 251, 22);">
+                <font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+              </div>
+            </td>
+
+            <td (click)="deletePlace(place._id)"><i class="fa fa-trash"></i></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-left: 50px;">
+        <div style="width:20px;height:20px;background-color:blue;">
+          <font size="-1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unreserved</font>
+        </div>
+        <div style="width:20px;height:20px;background-color:#FF8C00;">
+          <font size="-1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reserved</font>
+        </div>
+        <div style="width:20px;height:20px;background-color:red;">
+          <font size="-1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;Car&nbsp;in&nbsp;the&nbsp;Park</font>
+        </div>
+        <div style="width:20px;height:20px;background-color:#228B22;">
+          <font size="-1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car&nbsp;in&nbsp;the&nbsp;Park</font>
+        </div>
+        <div style="width:20px;height:20px;background-color:rgb(255, 251, 22);">
+          <font size="-1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Car&nbsp;in&nbsp;the&nbsp;Park&nbsp;and&nbsp;unreserved
+          </font>
+        </div>
+      </div>
+    </div>
+    <div class="table-wrapper" style="width: 90%; margin-left: 50px;">
+      <button type="button" (click)="stylestreet()" style="width: 150px; background-color: white;">Streets
+        style</button>
+      <button type="button" (click)="stylesatelite()"
+        style="margin: 3px; width: 150px; background-color: white;">Satellite style</button>
+      <div id="mapPlace"></div>
+    </div>
+
+
+
+
+
+  </form>
+</div>

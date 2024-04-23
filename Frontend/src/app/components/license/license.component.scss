@@ -1,0 +1,25 @@
+
+
+/*Button*/
+
+button.btn .icon {
+  left: -10px;
+  position: relative;
+}
+
+.testbox {
+display: flex;
+justify-content: center;
+align-items: center;
+height: inherit;
+padding: 20px;
+margin-left: 210px;
+
+}
+form {
+width: 100%;
+padding: 20px;
+border-radius: 6px;
+background: #fff;
+box-shadow: 0 0 25px 0 #d6e0f5;
+}

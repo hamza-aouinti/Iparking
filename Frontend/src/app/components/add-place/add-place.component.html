@@ -1,0 +1,66 @@
+<div class="container">
+	<button class="close" (click)="onCloseDialog()">
+		<i class="fa fa-window-close" style="color: darkgray;"></i>
+	</button>
+	<!-- code here -->
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-image" style="background-image: url(assets/images/place.jpg);">
+					<!--<h2 class="card-heading">
+				<small>Let's add a new place </small>
+			</h2>-->
+				</div>
+
+
+
+				<form class="card-form">
+					<div class="input">
+						<select class="input-field" (change)="filterChanged($event.target.value)"  ([ngModel])="selected">
+							<option></option>
+
+							<option class="form-control form-control-lg" *ngFor="let m of marker" style="  font-size: 15px;
+          					" [ngValue]="m.name">{{m.name}}</option>
+						</select>
+						<label class="input-label" style="	color: #4d575e;">Choose Parking</label>
+
+					</div>
+
+
+
+
+
+ 
+
+
+					<div class="input">
+						<input type="text" class="input-field" name="capteur" [(ngModel)]="placE.id" id="capteur" required />
+						<label class="input-label">Device ID</label>
+					</div>
+
+					<div class="input">
+						<input type="text" class="input-field" name="k"  [(ngModel)]="placE.name" id="id" required />
+						<label class="input-label">Name</label>
+					</div>
+
+					<div class="action">
+						<button class="action-button" (click)="ADDPlace()">Add</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel-body">
+				<button type="button" class="btnMap" (click)="stylestreet()" class="map" style="width: 150px;">Streets
+					style</button>
+				<button type="button" class="btnMap" (click)="stylesatelite()" class="map"
+					style="margin: 3px; width: 150px;">Satellite style</button>
+				<div class="container">
+					<div id="map-mapbox2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Fin row-->
+</div>

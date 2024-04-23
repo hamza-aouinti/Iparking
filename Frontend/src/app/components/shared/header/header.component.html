@@ -1,0 +1,30 @@
+
+<header>
+  <div class="headerwrapper">
+      <div class="header-left">
+        <img src="assets/images/ll.png" style="height: 50px;  margin-top: 5px; margin-left: 15px;">
+      </div>
+      <div class="header-right" style="margin-top: 8px;">
+
+
+          <div class="nav-item avatar dropdown" dropdown >
+            <a dropdownToggle  type="button" class="nav-link dropdown-toggle" style="color: white;">
+              <i class="fa fa-user-circle" style="color: white;"> </i></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu" >
+              <a class="dropdown-item waves-light" >
+                <!--<i class="fa fa-exchange" ></i>-->
+
+                <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" >
+                  <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color:black;" > <p> {{lang}} </p></option>
+                </select>
+              </a>
+              <!--<a class="dropdown-item waves-light"  routerLink="/license" style=" padding-left:5px; font-size: 12px; "><i class="fa fa-user-cog"></i> {{'header.license'|translate}}</a>-->
+              <a  *ngIf="auth.loggedIn()"  (click)="logoutUser()" (click)="toggleCollapsed()" style="font-size: 12px;padding-left:5px; " [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="dropdown-item waves-light"href="#"><i class="fa fa-lock"></i> {{'header.Logout' | translate }}</a>
+            </div>
+          </div>
+
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+

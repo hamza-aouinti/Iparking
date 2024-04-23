@@ -1,0 +1,233 @@
+.headerwrapper {
+  min-height: 60px;
+  width: 100%;
+  z-index: 1000;
+  &:after {
+      clear: both;
+      display: block;
+      content: '';
+  }
+}
+.header-left {
+  float: left;
+}
+
+.header-right {
+  float: right;
+  color: white;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+th, td {
+  border: 1px solid black;
+}
+a {
+	font-family: Poppins-Regular;
+	font-size: 16px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+}
+body {
+  min-height: 100%;
+  }
+  body, div, form,select, textarea,button {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 22px;
+  }
+  input{
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: black;
+  }
+  h1 {
+  position: absolute;
+  margin: 0;
+  line-height: 48px;
+  font-size: 38px;
+  color: rgb(74, 77, 78);
+  z-index: 2;
+  font-family: Poppins-Regular;
+  }
+  h3{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .testbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  padding: 20px;
+  margin-left: 210px;
+  }
+  form {
+  width: 100%;
+
+  padding: 20px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 25px 0 #d6e0f5;
+  }
+  .form-horizontal{
+    height: 550px;
+  }
+  .banner {
+  position: relative;
+  height: 200px;
+  width: 500px;
+  //background-image: url("assets/images/parkplace.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+  .banner::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  //width: 100%;
+  height: 100%;
+  }
+  input, select, textarea,button {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  }
+  input,button {
+  width: calc(100% - 10px);
+  padding: 5px;
+  }
+  input[type="date"] {
+  padding: 4px 5px;
+
+  }
+
+
+  .item input:hover, .item select:hover, .item textarea:hover {
+  border: 1px solid transparent;
+  box-shadow: 0 0 6px 0 #d6e0f5;
+  color: #545558;
+  }
+  .item {
+  position: relative;
+  margin: 10px 0;
+  }
+  input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+  }
+  .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  font-size: 20px;
+  color: #707070;
+  }
+  .item i {
+  right: 2%;
+  top: 28px;
+  z-index: 1;
+   }
+  [type="date"]::-webkit-calendar-picker-indicator {
+  right: 1%;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+
+  }
+  .btn-block {
+  margin-top: 10px;
+  text-align: center;
+  }
+  button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #0087cc;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  }
+  button:hover {
+  background: #6eb8dd;
+  }
+  @media (min-width: 568px) {
+  .name-item, .city-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+      }
+    }
+    .an-2 {
+      font-weight: 900;
+      font-size: 7vw;
+      font-size: 40px;
+  }
+
+  #map-mapbox{
+    width: 100%;
+    height: 550px;
+    border: rgb(54, 75, 78) solid 3px;
+
+    }
+    #map{
+      width: 100%;
+      height: 700px;
+      border: rgb(54, 75, 78) solid 3px;
+
+      }
+    p{
+      font-weight: bold;
+    }
+
+      .buttons {
+      width: 80px;
+      margin-top: 10px;
+      border: 1px solid darkgray;
+      border-radius: 5px;
+      background: #e9eaeb;
+      font-size: 16px;
+      color: rgb(57, 58, 59);
+      cursor: pointer;
+      }
+      button:hover {
+      background: #6eb8dd;
+      }
+      .content2 {
+        padding-left:0px;
+        margin-left: 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-flex-flow: column;
+        -ms-flex-flow: column;
+        flex-flow: column;
+        z-index: 5;
+      }
+      ::ng-deep .custom-modalbox {
+        mat-dialog-container {
+            padding: 0;
+            background-color: white;
+        }
+        }

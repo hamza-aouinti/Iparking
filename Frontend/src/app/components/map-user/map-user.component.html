@@ -1,0 +1,16 @@
+<body style="background-color: white;">
+      <div class="window" style="background-color: white;">
+        <div class="main"style="background-color: white;">
+              <div class="container">
+                  <button class="close" (click)="onCloseDialog(this.NomPark)">
+                    <i class="fa fa-window-close" style="color: rgb(155, 150, 150); margin-left: 248px;" ></i>
+                  </button>
+                <div class="content2">
+                  <button type="button" nbButton outline class="btn btn-secondary" (click)="stylestreet()" class="map" >Streets style</button>
+                  <button type="button" nbButton outline class="btn btn-secondary" (click)="stylesatelite()" class="map" style="margin: 3px;">Satellite style</button>
+                </div>
+                <div id="map-mapbox1"></div>
+              </div>
+          </div>
+        </div>
+</body>

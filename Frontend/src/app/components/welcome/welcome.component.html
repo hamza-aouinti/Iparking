@@ -1,0 +1,48 @@
+<header>
+  <div class="headerwrapper">
+
+      <div class="header-right" style="margin-top: 8px;">
+        <a>
+          <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected"
+          style="height: 30px; width: 75px; margin-top: 9px; border: 2px solid rgb(88, 87, 87) ;margin-right: 40px;
+               background-color: rgb(197, 206, 205);
+          color: white; font-size: medium; ">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(2, 2, 2);" > <p> {{lang}} </p></option>
+          </select>
+        </a>
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+<body>
+
+  <div class="container" id="container">
+    <h1>  {{'Welcome.Hello' | translate }} </h1>
+    <h2> {{'Welcome.Choose' | translate }} </h2>
+    <table>
+      <tr>
+        <td colspan="2">
+          <a  [routerLink]="['/loginadmin']">
+            <img src="assets/images/administrator1.png" style="height: 110px; width: 110px;margin-left: 50px; margin-top: 20px;">
+            <br>
+            <span style="margin-left: 50px;"> {{'Welcome.Admin' | translate }} </span>
+        </a>
+        </td>
+
+        <td>
+        <a  [routerLink]="['/loginuser']">
+          <img src="assets/images/user1.png" style="height: 110px; width: 110px; margin-left: 150px; margin-top: 20px;">
+          <br>
+            <span style="margin-left: 190px;"> {{'Welcome.User' | translate }} </span>
+      </a>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</body>
+<footer>
+	<p>
+    {{'Welcome.Des' | translate }} 		<a target="_blank" href="https://treetronix.com/">Treetronix</a>
+	</p>
+</footer>

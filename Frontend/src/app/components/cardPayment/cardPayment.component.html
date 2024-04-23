@@ -1,0 +1,175 @@
+<header>
+  <div class="headerwrapper">
+      <div class="header-left">
+        <img src="assets/images/ll.png" style="height: 50px;  margin-top: 5px; margin-left: 15px;">
+      </div>
+      <div class="header-right" >
+        <div class="row">
+          <div style="margin-top: 5px;">
+        <a routerLink="/home" style="margin-right: 40px; color:rgb(253, 251, 251);" (click)="toggleCollapsed()" >{{'header.Home' | translate }}</a>
+        <a routerLink="/map"style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.MAP' | translate }}</a>
+        <a routerLink="/consult" style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.CONSULTER' | translate }}</a>
+        <a routerLink="/contact" style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.CONTACT' | translate }}</a>
+          </div>
+        <div class="nav-item avatar dropdown" dropdown style=" color:rgb(253, 251, 251);">
+          <a dropdownToggle  type="button" class="nav-link dropdown-toggle" style="color: white;">
+            <i class="fa fa-user-circle" style="color: white;"> </i></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light">
+              <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" >
+                <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color:black;" > <p> {{lang}} </p></option>
+              </select>
+            </a>
+            <a class="dropdown-item waves-light"  routerLink="/accueil"><i class="fa fa-id-badge"></i> {{'header.Profile' | translate }}</a>
+            <a class="dropdown-item waves-light"href="#"  *ngIf="auth.loggedIn()"  (click)="logoutUser()" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}"><i class="fa fa-lock"></i> {{'header.Logout' | translate }}</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+<body class="preload">
+
+
+  <div class="testbox">
+  <form action="/">
+    <main id="main">
+      <section id="left" style="background-image: url(assets/images/visa.jpg);">
+        <div id="head">
+        </div>
+      </section>
+      <section id="right">
+        <h1></h1>
+        <form action="#" (ngSubmit)="onSubmit()" [formGroup]="addForm">
+          <div id="form-card" class="form-field">
+            <input id="cc-number" type="text" formControlName="userId" name="userId" nbInput
+             placeholder="" required hidden>
+          </div>
+          <!--<div id="form-card" class="form-field">
+            <label for="cc-number">{{'Payement.c1'|translate}}</label>
+            <input id="cc-number" type="text" formControlName="cin" name="cin" nbInput
+             placeholder="{{'Payement.c1'|translate}}" required>
+          </div>-->
+          <div id="form-card" class="form-field">
+            <label > <i class="fa fa-credit-card"></i> {{'Payement.c2'|translate}}</label>
+            <input type="text" formControlName="numCard" name="numCard" nbInput maxlength="19" placeholder="0000 0000 0000 0000 0000" required>
+          </div>
+          <div id="form-sec-code" class="form-field">
+            <label for="sec-code"><i class="fa fa-user-lock"></i> {{'Payement.c3'|translate}}</label>
+            <input type="password" maxlength="3" placeholder="123" type="text" formControlName="code" name="code" nbInput required>
+          </div>
+          <div id="form-card" class="form-field">
+            <label ><i class="fa fa-plus-circle"></i> {{'Payement.c1'|translate}}</label>
+            <input type="text" formControlName="montant" name="montant" nbInput placeholder="{{'Payement.c1'|translate}}" required>
+          </div>
+
+          <button type="submit">{{'HOME.Button1'|translate}}</button>
+        </form>
+      </section>
+    </main>
+    </form>
+  </div>
+
+
+</body>
+<footer class="footer" id="section-contact" style="background-color:  #2b303a;">
+  <div class="footer-contact-info-outer">
+    <div class="container">
+      <div class="cms-e-section">
+        <div class="row contact-info-row">
+                      <div class="col-lg-3 col-sm-6 col-xs-12">
+              <div class="footer-contact-info">
+                <div class="icon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <div class="info-content">
+                  <div class="info-content-label">
+                    <span class="wc-editable" data-pk="ws_call_us_now" data-type="text">{{'footer.Call' | translate}}</span>
+                  </div>
+                  <div class="info-content-text">
+                    <a href="tel:+216 71 111 100" style="color: darkcyan;">
+                      <span class="wc-editable" data-pk="ws_contact_phone_number" data-type="text">
+                        +216 71 111 100
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+                        <div class="col-lg-3 col-sm-6 col-xs-12">
+              <div class="footer-contact-info">
+                <div class="icon">
+                  <i class="fa fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                  <div class="info-content-label">
+                    <span class="wc-editable" data-pk="ws_send_us_a_message" data-type="text">
+                      {{'footer.Send' | translate}}                                  </span>
+                  </div>
+                  <div class="info-content-text">
+                    <a href="mailto:contact@treetronix.com;" style="color: darkcyan;">
+                      <span class="wc-editable" data-pk="ws_contact_email_address" data-type="text">
+                        contact@treetronix.com											</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+                    </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-nav">
+    <div class="container cms-e-section">
+      <ul>
+                <li><a routerLink="/home">{{'footer.Start' | translate}}</a></li>
+                <li><a routerLink="/map">{{'footer.Parks' | translate}}</a></li>
+                <li><a routerLink="/contact">{{'footer.Contact' | translate}}</a></li>
+                </ul>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <p class="copyright cms-e-section">&copy; 2021
+            <a href="https://treetronix.com/">
+              <span class="wc-editable" data-pk="ws_car_name" data-type="text">
+                Treetronix
+              </span>
+
+            </a> | <span data-blockid="98">
+              <span class="cms-e-element">
+                <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="98">
+                  {{'footer.Rights' | translate}}                              </span>
+              </span>
+            </span>
+          </p>
+
+          <p class="credits credits-secondary">
+            <a href="./" target="_blank" rel="noopener">
+              IParking
+            </a>
+
+          </p>
+        </div>
+                  <div class="col-sm-6 col-xs-12 text-right">
+            <ul class="socials socials-secondary cms-e-section" >
+
+              <li><a href="https://www.linkedin.com/company/treetronix/" target="_blank" class="ico" rel="noopener" aria-label="linkedin"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="https://www.youtube.com/channel/UC_GK8fBoBaSxTg05elGZcEQ/featured" target="_blank" class="ico" rel="noopener" aria-label="youtube"><i class="fa fa-youtube"></i></a></li>
+              <li><a href="https://treetronix.com/" target="_blank" class="ico" rel="noopener" aria-label="website"><i class="fa fa-globe"></i></a></li>
+
+            </ul>
+          </div>
+                </div>
+    </div>
+  </div>
+</footer>
+  <noscript id="deferred-styles">
+    <link rel="stylesheet" type="text/css" href="https://trials.vevs.website/web-demo/car-parking-website/index.php?controller=pjFront&action=pjActionLoadCss&a=pjActionIndex&widget=on&script_id=8&demo=1&template=template_1&theme=theme1&font=Lato&hmac=526ccdcf6f2d84d2748639418c6f7953&md5=566f112f0f08a5ca73f814c7cd0dd945" id="deferred-sheet">
+    </noscript>

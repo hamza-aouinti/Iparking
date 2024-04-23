@@ -1,0 +1,764 @@
+<header>
+  <div class="headerwrapper">
+      <div class="header-left">
+        <img src="assets/images/ll.png" style="height: 50px;  margin-top: 5px; margin-left: 15px;">
+      </div>
+      <div class="header-right" >
+        <div class="row">
+          <div style="margin-top: 5px;">
+        <a routerLink="/home" style="margin-right: 40px; color:rgb(253, 251, 251);" (click)="toggleCollapsed()" >{{'header.Home' | translate }}</a>
+        <a routerLink="/map"style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.MAP' | translate }}</a>
+        <a routerLink="/consult" style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.CONSULTER' | translate }}</a>
+        <a routerLink="/contact" style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.CONTACT' | translate }}</a>
+          </div>
+        <div class="nav-item avatar dropdown" dropdown style=" color:rgb(253, 251, 251);">
+          <a dropdownToggle  type="button" class="nav-link dropdown-toggle" style="color: white;">
+            <i class="fa fa-user-circle" style="color: white;"> </i></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light">
+              <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" >
+                <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color:black;" > <p> {{lang}} </p></option>
+              </select>
+            </a>
+            <a class="dropdown-item waves-light"  routerLink="/accueil"><i class="fa fa-id-badge"></i> {{'header.Profile' | translate }}</a>
+            <a class="dropdown-item waves-light"href="#"  *ngIf="auth.loggedIn()"  (click)="logoutUser()" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}"> <i class="fa fa-lock"></i> {{'header.Logout' | translate }}</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+
+  <ngb-carousel style="margin-bottom: 0;"interval=2000 [activeId]="'firstSlide'" [showNavigationIndicators]=true>
+    <ng-template ngbSlide>
+        <div class="carousel-caption" style="background-color: transparent ;">
+            <h3
+                style="color:#251b16; margin-top: 5px; font-weight: bold;font-family: 'Courier New', Courier, monospace; font-size: 2.5em;text-align: center; ">
+               IParking</h3>
+
+            <h5
+                style="color: #251b16;text-align: center;font-weight: bold; margin-top: 20px;font-family: 'Courier New', Courier, monospace; font-size: 1.6em; ">
+                {{'HOME.Together' | translate }}</h5>
+            <h3
+            style="color:#251b16;font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 1.8em;text-align: center; margin-top: 70px;">
+            {{'HOME.Books' | translate }}</h3>
+           <span class="material-icons"
+                style="background-color: #bebcba; font-size: 3em;  color:#251b16">arrow_downward</span>
+            <span class="material-icons"
+                style="background-color: #bebcba; font-size: 3em; color:#251b16">arrow_downward</span>
+            <span class="material-icons"
+                style="background-color: #bebcba; font-size: 3em;color:#251b16">arrow_downward</span>
+        </div>
+
+        <div class="picsum-img-wrapper">
+            <img src="assets/images/cars.jpg" style="opacity:0.8; width: 100%; height: 648px; " alt="Random first slide">
+
+        </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+            <img src="assets/images/car2.jpeg" style="height: 648px; width: 100%;"alt="Random second slide">
+        </div>
+        <div class="carousel-caption" style="margin-bottom: 250px; background-color: transparent ;">
+            <h3
+                style="color: #3f3e3e; text-align: center; font-weight: bold; font-size: 2em; ">
+                {{'HOME.Real' | translate }}</h3>
+                <br>
+            <p style="color: #3f3e3e; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 1.1em; ">
+              {{'HOME.vehicule' | translate }}
+        </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <div class="carousel-caption" style="margin-bottom: 240px; background-color: transparent ;">
+            <h3
+                style="color: rgb(236, 228, 228); text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 2em; ">
+                {{'HOME.steady' | translate }} </h3>
+            <p
+                style=" color: rgb(243, 236, 236);text-align: center; font-family: 'Courier New', Courier, monospace; font-size:1em; margin-top: 150pw; ">
+                {{'HOME.cities' | translate }}</p>
+        </div>
+        <div class="picsum-img-wrapper">
+            <img src="assets/images/cities.jpg" style="opacity:1; height: 648px; width: 100%;" alt="Random third slide">
+        </div>
+
+    </ng-template>
+</ngb-carousel>
+<div class="spacer spacer-1"></div>
+
+	<div class="main" style="background-image: url(assets/images/cars.jpg); background-repeat: no-repeat; background-size: 2000px; ">
+            <div class="container" >
+                <div id="pjCpContainer">
+                  <h3
+                  style="color:#3d3a3a; text-align: center; font-size: 1.5em;font-weight: bold; padding-top: 15px; ">
+                  {{'HOME.Book' | translate }}             </h3>
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                          <div class="hero-text-desc"><span class="wc-editable" data-pk="ws_home_slide_desc_1"
+                        data-type="plaintext"></span></div>
+                            <div class="form cms-e-section">
+
+                              <form [formGroup]="form" id="pjCpSearchForm" action="#" method="post"
+                                    class="pjCpSearchForm" novalidate="novalidate">
+                                    <div id="pjCpCalendarLocale" style="display: none;"
+                                        data-months="January_February_March_April_May_June_July_August_September_October_November_December"
+                                        data-days="Su_Mo_Tu_We_Th_Fr_Sa"></div>
+
+                                    <div class="form-group">
+                                      <label> {{'HOME.Park' | translate }}</label>
+                                        <select (change)="selectedpark($event.target.value)" class="form-control form-control-lg" >
+
+                                            <option class="form-control form-control-lg" *ngFor="let park of parks"  >{{park}}</option>
+                                          </select>
+
+                                        <!--label for="location_id" class="formLabel"><span class="wc-editable"
+                                                data-pk="ws_location"
+                                                data-type="text">{{'HOME.Location' | translate }}</span></label-->
+
+
+                                        <!-- <select name="location_id" style="height:40px;" id="location_id" class="form-control" (change)="filterChanged($event.target.value)" [(ngModel)]="reserv.name" name="name" formControlName="name" >
+                                <option value=""> </option>
+                                <option *ngFor="let m of listParking"  [ngValue]="m.name">{{m.name}}</option>
+                            </select> -->
+
+
+                            <div>
+                                <div>
+                                  <label> {{'HOME.Place' | translate }}</label>
+
+                                    <select (change)="selectedplace($event.target.value)"  #selectedValue class="form-control form-control-lg"  id="selectedValue" ([ngModel])="selectedValue">
+                                        <option class="form-control form-control-lg" *ngFor="let m of listPlacee"  [ngValue]="m.name">{{m}}</option>
+                                      </select>
+                                </div>
+
+
+                           <!-- <div>
+                              <p>
+                                <i class="glyphicon glyphicon-map-marker" style="color: #251b16;"></i>
+
+                                <span class="wc-editable" data-pk="ws_cannot_find_location" style="color: #251b16;"data-type="text">{{'HOME.find' | translate }}</span> &nbsp;
+                                <a (click)="onOpenDialog()">
+                                  <span class="wc-editable" data-pk="ws_view_map" data-type="text">{{'HOME.view' | translate }}</span>
+                                </a>
+                                <input class="form-control " style="height:40px;" ngModel={{this.NomParkChoisi}} name="park" formControlName="name" >
+                               </p>
+                            </div>-->
+                                <label for="location_id" class="formLabel"><span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.Reg Number' | translate }}</span></label>
+                                <input class="form-control " style="height:40px;"[(ngModel)]="reserv.matricule" formControlName="matricule"
+                                    placeholder="198 TUN 1254" name="matricule">
+                            </div>
+                        </div>
+                                        <div class="ng-autocomplete" style="width: 100%;">
+
+                                            <!--ng-autocomplete [(ngModel)]="reserv.name" [data]="data"
+                                                [searchKeyword]="keyword" (selected)='selectEvent($event)'
+                                                (inputChanged)='onChangeSearch($event)'
+                                                (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                                                [notFoundTemplate]="notFoundTemplate">
+
+                                            </ng-autocomplete-->
+
+                                            <ng-template #itemTemplate let-item>
+                                                <a [innerHTML]="item.name"></a>
+                                            </ng-template>
+
+                                            <ng-template #notFoundTemplate let-notFound>
+                                                <div [innerHTML]="notFound"></div>
+                                            </ng-template>
+                                        </div>
+
+                                    <div class="row">
+                                      <div class="col-lg-2 col-xs-12">
+                                    <label for="location_id" class="formLabel">
+                                      <span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.PriceH' | translate }}</span></label>
+                                      <input class="form-control "  ngModel={{this.prixHeure}} [(ngModel)]="reserv.priceH" formControlName="priceH" style="height:40px;width: 250px;" disabled>
+                                      <!--<select (change)="selectedprice($event.target.value)" class="form-control form-control-lg" >
+                                        <option class="form-control form-control-lg" *ngFor="let p of listPricesHour"  [ngValue]="">{{p.valeur}}</option>
+                                        </select>-->
+
+                                    </div>
+
+
+
+                                          <div class="col-lg-2 col-xs-12" style="margin-left: 175px;">
+                                        <label for="location_id" class="formLabel" >
+                                          <span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.PriceD' | translate }}</span></label>
+                                           <input class="form-control " ngModel={{this.prixJour}} [(ngModel)]="reserv.priceD" formControlName="priceD" style="height:40px; width:250px;" disabled>
+                                           <!--<select (change)="selectedpriceDay($event.target.value)" class="form-control form-control-lg" >
+                                            <option class="form-control form-control-lg" *ngFor="let p of listPricesDay"  [ngValue]="">{{p.valeur}}</option>
+                                            </select>-->
+                                          </div>
+                                            <div class="col-lg-2 col-xs-12" style="margin-left: 175px;">
+                                           <label for="location_id" class="formLabel" >
+                                            <span class="wc-editable" data-pk="ws_location" data-type="text">{{'HOME.PriceW' | translate }}</span></label>
+                                            <!--<select (change)="selectedpriceWeek($event.target.value)" class="form-control form-control-lg" >
+                                              <option class="form-control form-control-lg" *ngFor="let p of listPricesWeek"  [ngValue]="">{{p.valeur}}</option>
+                                              </select>-->
+                                             <input class="form-control " ngModel={{this.prixSemaine}} [(ngModel)]="reserv.priceW" formControlName="priceW" style="height:40px;width:250px;" disabled >
+                                           </div></div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-xs-12">
+                                            <div>
+                                                <label style="margin-top: 25px;"><span class="wc-editable"
+                                                        data-pk="ws_entry_date_time"
+                                                        data-type="text">{{'HOME.EntryD' | translate }}</span></label>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12" style="margin-top: 25px;">
+                                                            <div class="input-group datePick datePickFrom">
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                                </span>
+                                                                <!--<input [(ngModel)]="reserv.dateE" matInput [matDatepicker]="picker1"
+                                                                class="form-control" [viewFormat]="'DD/MM/YYYY'"
+                                                                [(ngModel)]="reserv.dateE" name="dateE"
+                                                                formControlName="dateE">
+                                                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                                <mat-datepicker #picker1></mat-datepicker>-->
+                                                                <!--<datepicker [(ngModel)]="reserv.dateE" [viewFormat]="'DD/MM/YYYY'" [modelFormat]="'DD-MM-YYYY'"  [id]="'firstDate'" [label]="'To'"></datepicker>-->
+                                                                <input class="form-control form-control-lg" [(ngModel)]="reserv.dateE" name="dateE" formControlName="dateE" type="text" placeholder="YYYY-MM-DD">
+                                                                  </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="input-group timePick timePickFrom"
+                                                                data-rel="from">
+                                                                <div class="col-md-6">
+                                                                  <div class="item">
+                                                                  <label style="font-size: 16px;">{{'HOME.EntryT' | translate }}</label>
+                                                                  <input type="time" name="name" [(ngModel)]="reserv.timeE" name="timeE"
+                                                                  formControlName="timeE"style="color: black ;height: 35px !important ;" />
+                                                                  </div>
+                                                                </div>
+                                                                <!--<timepicker [(ngModel)]="reserv.timeE" name="timeE"
+                                                                    formControlName="timeE"
+                                                                    style="height: 40px !important;"></timepicker>-->
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-xs-12">
+                                            <div class="dateTimePick">
+                                                <label style="margin-top: 25px;"><span class="wc-editable"
+                                                        data-pk="ws_exit_date_time"
+                                                        data-type="text">{{'HOME.ExitD' | translate }}</span></label>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12" style="margin-top: 25px;">
+
+                                                        <div class="form-group">
+
+                                                            <div class="input-group datePick datePickTo">
+
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                                                </span>
+                                                                <input type="text"  class="form-control" [(ngModel)]="reserv.dateS "name="dateS" formControlName="dateS"  placeholder="YYYY-MM-DD">
+
+
+                                                            </div>
+                                                            <!--<input [viewFormat]="'DD/MM/YYYY'" [(ngModel)]="reserv.dateS" matInput [matDatepicker]="picker2" name="dateS" class="form-control" formControlName="dateS" >
+                                                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                                                <mat-datepicker #picker2></mat-datepicker>
+                                                      <input id="dateOfBirth" [(ngModel)]="reserv.dateS" [viewFormat]="'DD/MM/YYYY'" [modelFormat]="'DD-MM-YYYY'" name="dateS" class="form-control" formControlName="dateS" type="date">
+-->
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="input-group timePick timePickTo" data-rel="to">
+
+                                                                <div class="col-md-6">
+                                                                  <div class="item">
+                                                                  <label style="font-size: 16px;">{{'HOME.ExitT' | translate }}</label>
+                                                                  <input type="time" name="name"  [(ngModel)]="reserv.timeS" name="timeS"
+                                                                  formControlName="timeS" style="color: black;height: 35px !important;"/>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                                <!--<timepicker [(ngModel)]="reserv.timeS" name="timeS"
+                                                                    formControlName="timeS"></timepicker>-->
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <!--div>
+                                        <label for="location_id" class="formLabel"><span class="wc-editable"
+                                                data-pk="ws_location"
+                                                data-type="text">{{'HOME.place' | translate }}</span></label>
+                                        <span class="material-icons" (click)="choosePlace()">touch_app</span>
+                                    </div-->
+
+                                    <div class="form-group text-center">
+                                        <button type="submit" (click)="Reservation(selectedValue)" class="btn btn-primary" ><span
+                                                class="wc-editable" data-pk="ws_btn_choose_your_space"
+                                                data-type="action">{{'HOME.Button' | translate }}</span></button>
+                                        <a name="book"></a>
+                                        <!--<p style="text-align: center;" *ngIf="timeRespect()">
+                                            {{'HOME.condition' | translate }}</p>-->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="spacer spacer-1"></div>
+                <div class="cms-e-group" data-id="620" data-hmac="3eecc8b19c7148bdac2800eecae47d13"><div class="custom-layout">
+                  <div class="container">
+                    <div class="cms-e-section">
+                      <div data-blockid="288">
+                        <h2 class="cms-e-element text-center">
+                          <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="288">
+                            {{'HOME.smart' | translate }}
+                                  <br> {{'HOME.SOLUTIONS' | translate }}<br> <i class="fa fa-sort-down" style="color:grey;"> </i>
+                          </span>
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                </div></div>
+
+              <ngb-carousel class="carousel" [showNavigationArrows]="true" [showNavigationIndicators]="true" interval=2000>
+                <ng-template ngbSlide>
+                    <div class="item" alt="Random first slide">
+                        <div class="row-fluid">
+
+                          <div class="cms-e-group" data-id="614" data-hmac="a1a2a8f73afa2522cec947228efddc4a"><div class="custom-layout">
+                            <div class="container">
+                              <div class="row row-triple-col">
+
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                  <div class="text-center cl-mt-15 cms-e-section">
+                                    <div class="cl-vector-icon">
+                                      <div data-blockid="276" class="hidden"></div>					</div>
+
+                                    <div class="cl-paragraph">
+                                      <div data-blockid="277">
+                                        <h2 class="cms-e-element cl-box-title text-center">
+                                          <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="277">
+                                            <span class="material-icons" style="font-size: 3em;">school</span>
+                                            <br>
+                                            {{'HOME.uni' | translate }}
+
+                                          </span>
+                                        </h2>
+                                      </div>
+                                      <div data-blockid="278">
+                                        <div class="cms-e-element text-center">
+                                          <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="278">
+                                            {{'HOME.defuni' | translate }}
+                                              </span>
+                                            </div>
+                                          </div>
+                                            </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                  <div class="text-center cl-mt-15 cms-e-section">
+                                    <div class="cl-vector-icon">
+                                      <div data-blockid="279" class="hidden"></div>					</div>
+
+                                    <div class="cl-paragraph">
+                                      <div data-blockid="280">
+                                        <h2 class="cms-e-element cl-box-title text-center">
+                                          <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="280">
+                                            <span class="material-icons" style="font-size: 3em;">local_hospital</span>
+                                            <br> {{'HOME.hos' | translate }}
+                                      </span>
+                                    </h2>
+                                  </div>
+                                  <div data-blockid="281">
+                                    <div class="cms-e-element text-center">
+                                      <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="281">
+                                        {{'HOME.defhos' | translate }}                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                  <div class="text-center cl-mt-15 cms-e-section">
+                                    <div class="cl-vector-icon">
+                                      <div data-blockid="282" class="hidden"></div>					</div>
+
+                                    <div class="cl-paragraph">
+                                      <div data-blockid="283">
+                                        <h2 class="cms-e-element cl-box-title text-center">
+                                          <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="283">
+                                            <span class="material-icons" style="font-size: 3em;">local_convenience_store</span>
+                                            <br>
+                                            {{'HOME.Supermarkets' | translate }}
+                                          </span>
+                                        </h2>
+                                      </div>
+                                      <div data-blockid="284">
+                                        <div class="cms-e-element text-center">
+                                          <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="284">
+                                            {{'HOME.defSupermarkets' | translate }}                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div></div>
+                              <!--group-end:a1a2a8f73afa2522cec947228efddc4a-->
+
+                          <!--group-begin:46811bc58504741c5271ba6d2c7765cb-->
+
+
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="item" alt="Random second slide">
+                      <div class="cms-e-group" data-id="614" data-hmac="a1a2a8f73afa2522cec947228efddc4a"><div class="custom-layout">
+                        <div class="container" style="margin-left: 400px;">
+                          <div class="row">
+
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <div class="text-center cl-mt-15 cms-e-section">
+                                <div class="cl-vector-icon">
+                                  <div data-blockid="276" class="hidden"></div>
+                                </div>
+
+                                <div class="cl-paragraph">
+                                  <div data-blockid="277">
+                                    <h2 class="cms-e-element cl-box-title text-center">
+                                      <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="277">
+                                        <span class="material-icons" style="font-size: 3em;">local_airport</span>
+                                        <br>
+                                        {{'HOME.Airports' | translate }}                                      </span>
+                                    </h2>
+                                  </div>
+                                  <div data-blockid="278">
+                                    <div class="cms-e-element text-center">
+                                        <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="278">
+{{'HOME.defAirports' | translate }}                                        </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                              <div class="text-center cl-mt-15 cms-e-section">
+                                <div class="cl-vector-icon">
+                                  <div data-blockid="276" class="hidden"></div>
+                                </div>
+
+                                <div class="cl-paragraph">
+                                  <div data-blockid="277">
+                                    <h2 class="cms-e-element cl-box-title text-center">
+                                      <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="277">
+                                        <span class="material-icons" style="font-size: 3em;">account_balance</span>
+                                        <br>
+                                        {{'HOME.Councils' | translate }}                                      </span>
+                                    </h2>
+                                  </div>
+                                  <div data-blockid="278">
+                                    <div class="cms-e-element text-center">
+                                        <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="278">
+                                          {{'HOME.defCouncils' | translate }}                                        </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+
+
+
+                          </div>
+                        </div>
+                      </div></div>
+                          <!--group-end:a1a2a8f73afa2522cec947228efddc4a-->
+
+                      <!--group-begin:46811bc58504741c5271ba6d2c7765cb-->
+              </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="item" alt="Random third slide">
+
+
+                <div class="cms-e-group" data-id="614" data-hmac="a1a2a8f73afa2522cec947228efddc4a"><div class="custom-layout">
+                  <div class="container" style="margin-left: 400px;">
+                    <div class="row">
+
+                      <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center cl-mt-15 cms-e-section">
+                          <div class="cl-vector-icon">
+                            <div data-blockid="276" class="hidden"></div>
+                          </div>
+
+                          <div class="cl-paragraph">
+                            <div data-blockid="277">
+                              <h2 class="cms-e-element cl-box-title text-center">
+                                <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="277">
+                                  <span class="material-icons" style="font-size: 3.73em;">shopping_cart</span>
+                                  <br>
+                                  {{'HOME.Shopping' | translate }}                                </span>
+                              </h2>
+                            </div>
+                            <div data-blockid="278">
+                              <div class="cms-e-element text-center">
+                                  <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="278">
+                                    {{'HOME.defShopping' | translate }}                                  </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center cl-mt-15 cms-e-section">
+                          <div class="cl-vector-icon">
+                            <div data-blockid="276" class="hidden"></div>
+                          </div>
+
+                          <div class="cl-paragraph">
+                            <div data-blockid="277">
+                              <h2 class="cms-e-element cl-box-title text-center">
+                                <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="277">
+                                  <span class="material-icons" style="font-size: 3em;">store</span>
+                                  <br>
+                                  {{'HOME.operators' | translate }}                                </span>
+                              </h2>
+                            </div>
+                            <div data-blockid="278">
+                              <div class="cms-e-element text-center">
+                                  <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="278">
+                                    {{'HOME.defoperators' | translate }}
+                                  </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    </div>
+                  </div>
+                </div></div>
+              </ng-template>
+              </ngb-carousel>
+              <div class="spacer spacer-1"></div>
+
+
+                  <div class="cms-e-group" data-id="621" data-hmac="60cc110c6e3748944b53400dd4aef122"><div class="custom-layout">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+                      <div class="text-center cl-mt-15 cl-mb-15 cms-e-section">
+                        <div class="cl-vector-icon">
+                          <div data-blockid="289" class="hidden"></div>					</div>
+
+                        <div class="cl-paragraph">
+                          <div data-blockid="290">
+                            </div>
+
+                                <h1 class="cms-e-element text-center">
+                                  <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="290">
+                                    {{'HOME.about' | translate }}                                  </span>
+                                </h1>
+                                <div data-blockid="291">
+                                  <div class="cms-e-element text-center">
+                                      <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="291">
+                                        {{'HOME.def' | translate }}                                       </span>
+                                  </div>
+                                </div>
+
+                                  </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div></div>
+              <div class="spacer spacer-1"></div>
+
+                  <!--group-end:60cc110c6e3748944b53400dd4aef122-->
+
+              <!--group-begin:ca3bf6535ed21d54f657e44625e638a2-->
+
+                  <!--group-end:ca3bf6535ed21d54f657e44625e638a2-->
+
+              <!--group-begin:064ee8c4e4747e63dfeea1c0b61ddb1c-->
+                  <div class="cms-e-group" data-id="624" data-hmac="064ee8c4e4747e63dfeea1c0b61ddb1c"><div class="custom-layout">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                      <div class="cms-e-section cl-mt-15">
+                        <div data-blockid="293">
+                          <div class="wc-thumb btn-gallery-replace "><img class="wc-image cms-e-element cl-img img-responsive" src="assets/images/mission.png" alt="" title="" data-id="757">
+                          </div>
+                        </div>
+                        <div class="cl-paragraph">
+                          <div data-blockid="294">
+                            <h3 class="cms-e-element text-center"><span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="294">
+                              {{'HOME.Mission' | translate }}                            </span>
+                          </h3>
+                        </div>
+                          <div data-blockid="295"><div class="cms-e-element"><span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="295">
+                            {{'HOME.Offrez' | translate }}                          </span></div></div>					</div>
+
+                        <div data-blockid="296" class="hidden"></div>				</div>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                      <div class="cms-e-section cl-mt-15">
+                        <div data-blockid="297"><div class="wc-thumb btn-gallery-replace "><img class="wc-image cms-e-element cl-img img-responsive" src="assets/images/objectif.png" alt="" title="" data-id="758"></div></div>
+                        <div class="cl-paragraph">
+                          <div data-blockid="298"><h3 class="cms-e-element text-center"><span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="298">
+                            {{'HOME.objectif' | translate }}</span></h3></div>
+                          <div data-blockid="299"><div class="cms-e-element"><span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="299">
+                            {{'HOME.Ameliorer' | translate }}                          </span></div></div>					</div>
+
+                        <div data-blockid="300" class="hidden"></div>				</div>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                      <div class="cms-e-section cl-mt-15">
+                        <div data-blockid="301"><div class="wc-thumb btn-gallery-replace "><img class="wc-image cms-e-element cl-img img-responsive" src="assets/images/vision.png" alt="" title="" data-id="759"></div></div>
+                        <div class="cl-paragraph">
+                          <div data-blockid="302"><h3 class="cms-e-element text-center"><span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="302">
+                            {{'HOME.Vision' | translate }}</span></h3></div>
+                          <div data-blockid="303"><div class="cms-e-element">
+                            <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="textarea" data-foreign_id="303">
+                              {{'HOME.developpement' | translate }}
+                            </span></div></div>					</div>
+
+                        <div data-blockid="304" class="hidden"></div>				</div>
+                    </div>
+                  </div>
+                </div>
+              </div></div>
+                  <!--group-end:064ee8c4e4747e63dfeea1c0b61ddb1c-->
+
+              <!--section-end:5018c56cd80d3df7245ac3763921e763-->
+                <!--e:5018c56cd80d3df7245ac3763921e763-->
+
+              <!--e:0-->
+                 <footer class="footer" id="section-contact" style="background-color:  #2b303a;">
+                <div class="footer-contact-info-outer">
+                  <div class="container">
+                    <div class="cms-e-section">
+                      <div class="row contact-info-row">
+                                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                            <div class="footer-contact-info">
+                              <div class="icon">
+                                <i class="fa fa-phone"></i>
+                              </div>
+                              <div class="info-content">
+                                <div class="info-content-label">
+                                  <span class="wc-editable" data-pk="ws_call_us_now" data-type="text">{{'footer.Call' | translate}}</span>
+                                </div>
+                                <div class="info-content-text">
+                                  <a href="tel:+216 71 111 100" style="color: darkcyan;">
+                                    <span class="wc-editable" data-pk="ws_contact_phone_number" data-type="text">
+                                      +216 71 111 100
+                                    </span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                                      <div class="col-lg-3 col-sm-6 col-xs-12">
+                            <div class="footer-contact-info">
+                              <div class="icon">
+                                <i class="fa fa-envelope"></i>
+                              </div>
+                              <div class="info-content">
+                                <div class="info-content-label">
+                                  <span class="wc-editable" data-pk="ws_send_us_a_message" data-type="text">
+                                    {{'footer.Send' | translate}}                                  </span>
+                                </div>
+                                <div class="info-content-text">
+                                  <a href="mailto:contact@treetronix.com;" style="color: darkcyan;">
+                                    <span class="wc-editable" data-pk="ws_contact_email_address" data-type="text">
+                                      contact@treetronix.com											</span>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                                  </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="footer-nav">
+                  <div class="container cms-e-section">
+                    <ul>
+                              <li><a routerLink="/home">{{'footer.Start' | translate}}</a></li>
+                              <li><a routerLink="/map">{{'footer.Parks' | translate}}</a></li>
+                              <li><a routerLink="/contact">{{'footer.Contact' | translate}}</a></li>
+                              </ul>
+                  </div>
+                </div>
+                <div class="section">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-6 col-xs-12">
+                        <p class="copyright cms-e-section">&copy; 2021
+                          <a href="https://treetronix.com/">
+                            <span class="wc-editable" data-pk="ws_car_name" data-type="text">
+                              Treetronix
+                            </span>
+
+                          </a> | <span data-blockid="98">
+                            <span class="cms-e-element">
+                              <span class="wc-editable wc-element" data-model="pjBlockElement" data-field="text" data-type="text" data-foreign_id="98">
+                                {{'footer.Rights' | translate}}                              </span>
+                            </span>
+                          </span>
+                        </p>
+
+                        <p class="credits credits-secondary">
+                          <a href="./" target="_blank" rel="noopener">
+                            IParking
+                          </a>
+
+                        </p>
+                      </div>
+                                <div class="col-sm-6 col-xs-12 text-right">
+                          <ul class="socials socials-secondary cms-e-section" >
+
+                            <li><a href="https://www.linkedin.com/company/treetronix/" target="_blank" class="ico" rel="noopener" aria-label="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://www.youtube.com/channel/UC_GK8fBoBaSxTg05elGZcEQ/featured" target="_blank" class="ico" rel="noopener" aria-label="youtube"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="https://treetronix.com/" target="_blank" class="ico" rel="noopener" aria-label="website"><i class="fa fa-globe"></i></a></li>
+
+                          </ul>
+                        </div>
+                              </div>
+                  </div>
+                </div>
+              </footer>
+                <noscript id="deferred-styles">
+                  <link rel="stylesheet" type="text/css" href="https://trials.vevs.website/web-demo/car-parking-website/index.php?controller=pjFront&action=pjActionLoadCss&a=pjActionIndex&widget=on&script_id=8&demo=1&template=template_1&theme=theme1&font=Lato&hmac=526ccdcf6f2d84d2748639418c6f7953&md5=566f112f0f08a5ca73f814c7cd0dd945" id="deferred-sheet">
+                  </noscript>

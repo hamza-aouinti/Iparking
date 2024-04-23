@@ -1,0 +1,36 @@
+
+
+/********** 3. HEADER STYLES **********/
+/**************************************/
+
+.headerwrapper {
+    background-color: #63add8;
+    min-height: 60px;
+    width: 100%;
+    z-index: 1000;
+    &:after {
+        clear: both;
+        display: block;
+        content: '';
+    }
+}
+.header-left {
+    float: left;
+}
+
+.header-right {
+    float: right;
+    color: white;
+    margin-top: 20px;
+    margin-right: 55px;
+    //font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    //font-weight: bold;
+
+}
+
+a.btn.btn-social-icon.btn-github {
+    color: #fff;
+    border: 1px solid #fff;
+    margin: 10px;
+}

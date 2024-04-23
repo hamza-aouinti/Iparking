@@ -1,0 +1,163 @@
+<header>
+  <div class="headerwrapper">
+
+    <div class="header-right" style="margin-top: 8px;">
+      <a>
+        <select (change)="LanguageChanged($event.target.value)" [value]='fr' ([ngModel])="selected"
+          style="height: 30px; width: 75px; margin-top: 5px; border: 2px solid white ;margin-right: 40px; background-color: #63add8; color: white; font-size: medium;  ">
+          <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(15, 15, 15);">
+            <p> {{lang}} </p>
+          </option>
+        </select>
+      </a>
+
+    </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+
+<body>
+  <div class="logcontainer">
+
+    <div class="form-container sign-in-container">
+      <form id="Login">
+        <h1>{{'Login.signin'| translate}}</h1>
+        <input type="email" class="form-control" [(ngModel)]="loginUserData.email" name="email" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="{{'Login.E'| translate}}">
+        <input type="password" class="form-control" [(ngModel)]="loginUserData.password" name="password"
+          id="exampleInputPassword1" placeholder="{{'Login.P'| translate}}">
+        <!--<div class="forgot">
+            <a href="reset.html" routerLink="/forgot">{{'Login.F'| translate}}</a>
+          </div>-->
+        <br>
+        <button type="submit" class="btn btn-primary float-right" (click)="loginUser()">
+          <span class="wc-editable" data-pk="ws_btn_choose_your_space" data-type="action">{{'Login.L'|
+            translate}}</span>
+        </button>
+        <br>
+        <a (click)="open()" style="fontWeight:bold ; color: #63add8;">Forget password?</a>
+      </form>
+    </div>
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>{{'Login.H'| translate}}</h1>
+          <p>{{'Login.Enter'| translate}}s</p>
+          <button class="ghost" id="signUp" routerLink="/registerUser">{{'Login.signup'| translate}}</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</body>
+<footer>
+  <p>
+    {{'Welcome.Des'| translate}}
+    <a target="_blank" href="https://treetronix.com/">Treetronix</a>
+  </p>
+</footer>
+
+<footer>
+  <p>
+    Designed By
+    <a target="_blank" href="https://treetronix.com/">Treetronix</a>
+  </p>
+</footer>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle2" aria-hidden="true"
+  id="exampleModalToggle2">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggle2"
+          style="font-size: 16px; font-weight : bold; color : rgb(140, 181, 214) ;">Forget password</h5>
+
+      </div>
+      <div class="modal-body">
+        <label style="font-size: 16px; color : #6666 ; font-weight : bold; " for="emaill">tapez votre email pour
+          recevoir un code</label>
+        <input type="email" class="form-control" [(ngModel)]="emaill" name="emaill" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="{{'Login.E'| translate}}">
+      </div>
+      <div class="modal-footer" style="display: flex;">
+        <div>
+
+          <button id="close" style="background-color: grey;" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+        </div>
+        <div>
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+            (click)="sendEmail()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle1" aria-hidden="true"
+  id="exampleModalToggle1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggle2"
+          style="font-size: 16px; font-weight : bold; color : rgb(140, 181, 214) ;">Code</h5>
+
+      </div>
+      <div class="modal-body">
+        <label style="font-size: 16px; color : #6666 ; font-weight : bold; " for="code">vous avez récu le code dans
+          votre email</label>
+        <input type="text" class="form-control" [(ngModel)]="code" name="code" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="tapez le code">
+      </div>
+      <div class="modal-footer" style="display: flex;">
+        <div>
+
+          <button id="closeone" style="background-color: grey;" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+        </div>
+        <div>
+          <button class="btn btn-primary" (click)="verifCode()" data-bs-target="#exampleModalToggle"
+            data-bs-toggle="modal">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalToggle3" aria-hidden="true"
+  id="exampleModalToggle3">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggle2"
+          style="font-size: 16px; font-weight : bold; color : rgb(140, 181, 214) ;">Change password</h5>
+
+      </div>
+      <div class="modal-body">
+        <label style="font-size: 16px; color : #6666 ; font-weight : bold; " for="newPass">new password</label>
+        <input type="password" class="form-control" [(ngModel)]="newPass" name="newPass" id="exampleInputEmail1"
+          aria-describedby="emailHelp" >
+        <label style="font-size: 16px; color : #6666 ; font-weight : bold; " for="newPass">confirm password</label>
+        <input type="password" class="form-control" [(ngModel)]="conPass" name="conPass" id="exampleInputEmail1"
+          aria-describedby="emailHelp" >
+      </div>
+      <div class="modal-footer" style="display: flex;">
+        <div>
+
+          <button id="closetwo" style="background-color: grey;" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+        </div>
+        <div>
+          <button class="btn btn-primary" (click)="change()"  data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,171 @@
+<div class="testbox">
+  <form action="/">
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="panel-body" style="height: 700px;">
+          <div class="panel-heading" style="margin-top: 5px; color: rgb(153, 150, 150);">
+            <h3><i class="fa fa-plus-square"></i>{{'admin.ad10'|translate}}</h3>
+          </div>
+
+          <div class="col-md-8">
+            <form class="form-horizontal" [formGroup]="addForm">
+              <div class="panel-heading"
+                style="text-align: center; margin-top: 5px; font-size: 18px; font-weight: bold;">
+                {{'admin.ad11'|translate}}</div>
+              <div class="item">
+                <p>{{'admin.ad12'|translate}}</p>
+                <input type="text" name="name" formControlName="name" ngx-google-places-autocomplete
+                  [(ngModel)]="listParks.name" (onAddressChange)="handleAddressChange($event)" />
+              </div>
+              <div class="item">
+                <p> {{'HOME.PriceH'|translate}}</p>
+                <input type="text" name="price" formControlName="price" [(ngModel)]="listParks.price" />
+                <!--<select (change)="filterChanged($event.target.value)" (blur)="TypeValidateSelect($event.target.value)"  [(ngModel)]="selectedOption" >
+                              <option></option>
+                              <option> Price per hour</option>
+                              <option>Price per day</option>
+                              <option>Price per month</option>
+                            </select>-->
+
+              </div>
+              <div class="item">
+                <p> {{'HOME.PriceD'|translate}}</p>
+                <input type="text" name="priceD" formControlName="priceD" [(ngModel)]="listParks.priceD" />
+              </div>
+              <div class="item">
+                <p> {{'HOME.PriceW'|translate}}</p>
+                <input type="text" name="price" formControlName="priceW" [(ngModel)]="listParks.priceW" />
+              </div>
+              <div class="item">
+                <p>{{'admin.ad13'|translate}}</p>
+                <input type="text" name="des" formControlName="des" type="text" [(ngModel)]="listParks.des" />
+              </div>
+              <!--<p style="font-size: x-large;" *ngIf="edits == true">parking edit... </p>-->
+
+              <div class="item">
+                <div class="btn-block">
+                  <button type="button" class="btn btn-success" (click)="ajouterParking()"
+                    style="width: 65px;">{{'admin.ad14'|translate}}</button>
+                  <button type="submit" class="btn btn-success" (click)="modifierPark()"
+                    style="width: 65px; margin-left: 10px;">{{'admin.ad15'|translate}}</button>
+
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <a>
+          <select (change)="LanguageChanged($event.target.value)" [value]='fr' ([ngModel])="selected" style="margin-left:550px;height: 30px;  background: #fff;
+                  width: 75px; border: 2px solid rgb(194, 191, 191)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+            <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);">
+              <p> {{lang}} </p>
+            </option>
+          </select>
+        </a>
+        <div class="panel-body">
+          <button type="button" class="btnMap" (click)="stylestreet()" class="map"
+            style="width: 150px;">{{'Autres.map3'|translate}}</button>
+          <button type="button" class="btnMap" (click)="stylesatelite()" class="map"
+            style="margin: 3px; width: 150px;">{{'Autres.map4'|translate}}</button>
+          <div class="container">
+            <div id="map-mapbox"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default panel-table">§
+      <div class="panel-heading panel-heading-no-divider"><i class="fa fa-search"></i> {{'admin.ad8'|translate}}</div>
+      <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: rgb(229, 232, 235); margin-top:20px;">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <div class="item" style="margin-left: 10px;">
+              <p>{{'Places.C2'|translate}}</p>
+              <input type="text" placeholder="{{'admin.ad7'|translate}}" [(ngModel)]="searchName"
+                style="border-radius: 5px; width: 250px;">
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+    <div class="panel panel-default panel-table">
+      <div class="panel-heading panel-heading-no-divider">
+        <h3> <i class="fa fa-car"></i> {{'admin.ad23'|translate}}</h3>
+      </div>
+      <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color: rgb(229, 232, 235); ">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="buttons" Buttonlabel="Map" (click)="List=false; Map=true"><i class="fa fa-map-marker "></i>
+              {{'admin.ad21'|translate}}</button>
+          </li>
+          <li class="nav-item">
+            <button class="buttons" Buttonlabel="List" (click)="List=true; Map=false" style="margin-left: 10px;"><i
+                class="fa fa-list "></i> {{'admin.ad22'|translate}}</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container" *ngIf="List">
+      <div class="panel-body">
+
+        <div class="table-responsive" style="margin-top: 10px; padding-left: 60px;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">{{'admin.ad12'|translate}}</th>
+                <th scope="col">{{'admin.ad13'|translate}}</th>
+                <th scope="col">{{'HOME.PriceH'|translate}}</th>
+                <th scope="col">{{'HOME.PriceD'|translate}}</th>
+                <th scope="col">{{'HOME.PriceW'|translate}}</th>
+                <th scope="col">{{'admin.ad19'|translate}}</th>
+                <th></th>
+                <th></th>
+
+              </tr>
+            </thead>
+            <tbody>
+            <tbody>
+              <tr *ngFor="let m of marker |filterparkName:searchName">
+                <td>{{m.name}}</td>
+                <td>{{m.des}}</td>
+                <td>{{m.price}}</td>
+                <td>{{m.priceD}}</td>
+                <td>{{m.priceW}}</td>
+                <td (click)="onOpenDialog(m.name)"> <img src="assets/images/marker.png"
+                    style="width: 30px ; height: 30px; margin-left: 8px;"></td>
+
+                <td>
+                  <a class="action-btn" (click)="onEdit(m)">
+                    <i class="fa fa-pencil-square" style="color:#6eb8dd;"></i>
+                  </a>
+                </td>
+                <td>
+                  <a class="action-btn" (click)="supprimerPark(m._id)">
+                    <i class="fa fa-trash" style="color: #6eb8dd;"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="container" style="padding-left: 60px;">
+        <button type="button" (click)="stylestreet1()" style="width: 150px;">{{'Autres.map3'|translate}}</button>
+        <button type="button" (click)="stylesatelite1()"
+          style="margin: 3px; width: 150px;">{{'Autres.map4'|translate}}</button>
+        <div id="map"></div>
+      </div>
+    </div>
+
+
+  </form>
+</div>
+<!--Fin class testbox-->

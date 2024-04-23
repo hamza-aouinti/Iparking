@@ -1,0 +1,89 @@
+<header>
+  <div class="headerwrapper">
+      <div class="header-left">
+        <img src="assets/images/ll.png" style="height: 50px;  margin-top: 5px; margin-left: 15px;">
+      </div>
+      <div class="header-right" >
+        <div class="row">
+          <div style="margin-top: 10px;">
+        <a routerLink="/home" style="margin-right: 40px; color:rgb(253, 251, 251);" (click)="toggleCollapsed()" >{{'header.Home' | translate }}</a>
+        <a routerLink="/map"style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.MAP' | translate }}</a>
+        <a routerLink="/consult" style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.CONSULTER' | translate }}</a>
+        <a routerLink="/contact" style="margin-right: 40px;color:rgb(253, 251, 251);"(click)="toggleCollapsed()">{{'header.CONTACT' | translate }}</a>
+          </div>
+        <div class="nav-item avatar dropdown" dropdown style=" color:rgb(253, 251, 251);">
+          <a dropdownToggle  type="button" class="nav-link dropdown-toggle" style="color: white;">
+            <i class="fa fa-user-circle" style="color: white;"> </i></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light">
+              <select (change)="LanguageChanged($event.target.value)"  [value]='fr' ([ngModel])="selected" >
+                <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color:black;" > <p> {{lang}} </p></option>
+              </select>
+            </a>
+            <a class="dropdown-item waves-light"  routerLink="/accueil"><i class="fa fa-id-badge"></i> {{'header.Profile' | translate }}</a>
+            <a class="dropdown-item waves-light"href="#"  *ngIf="auth.loggedIn()"  (click)="logoutUser()" (click)="toggleCollapsed()" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}"> <i class="fa fa-lock"></i> {{'header.Logout' | translate }}</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      </div><!-- header-right -->
+  </div><!-- headerwrapper -->
+</header>
+<div class="testbox">
+  <form action="/">
+      <!--<label for="location_id" class="formLabel">
+        <h3 class="wc-editable" data-pk="ws_location"data-type="text" style="margin-top: 10px; color: rgb(77, 90, 102);"> Choose Parking</h3>
+      </label>
+      <select (change)="selectedPark($event.target.value)" name="location_id" id="location_id" class="form-control form-control-lg" class="form-control form-control-lg">
+        <option></option>
+        <option class="form-control form-control-lg" *ngFor="let m of marker" style="font-size: 16px;"  [ngValue]="m">{{m.name}}</option>
+
+      </select>
+    -->
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading panel-heading-no-divider">{{'leftNav.Res'|translate}} </div>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{{'HOME.Reg Number'|translate}} </th>
+                      <th>{{'HOME.Park'|translate}}</th>
+                      <th>{{'HOME.Place'|translate}}</th>
+                      <th>{{'HOME.EntryD'|translate}}</th>
+                      <th>{{'HOME.EntryT'|translate}}</th>
+                      <th>{{'HOME.ExitD'|translate}}</th>
+                      <th>{{'HOME.ExitT'|translate}}</th>
+
+                      <th>{{'HOME.Total'|translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let m of listR" >
+                      <th scope="col">{{m.matricule}}</th>
+                      <th scope="col">{{m.park}}</th>
+                      <th scope="col">{{m.palce}}</th>
+                      <th scope="col" name="date">{{m.dateDebut}}</th>
+                      <th scope="col">{{m.timeDebut}}</th>
+                      <th scope="col">{{m.dateFin}}</th>
+                      <th scope="col">{{m.timeFin}}</th>
+                      <th>{{m.totalPrice}}</th>
+                      <th scope="col"></th>
+
+
+
+
+
+
+
+
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+         </div>
+
+  </form>
+</div>

@@ -1,0 +1,65 @@
+<div class="sidebar hidden-sm-down">
+  
+  <div>
+    <a>
+      <select (change)="LanguageChanged($event.target.value)" [value]='fr' ([ngModel])="selected" style="margin-left:130px;height: 30px;  background: #fff;
+        width: 75px; border: 2px solid rgb(173,216,230)  ; color: rgb(0, 0, 0); font-size: medium;  ">
+        <option *ngFor="let lang of translate.getLangs()" value="{{lang}}" style="color: rgb(0, 0, 0);">
+          <p> {{lang}} </p>
+        </option>
+      </select>
+    </a>
+  </div> 
+    <ul class="nav in" id="side-menu">
+
+        <li class="user-pro">
+            <a href="#/dashboard" class="text-center">
+                <div class="profile-img">
+                    <img src="assets/images/admin.jpg"/>
+                </div>
+                <span>{{'leftNav.M1'|translate }}</span>
+                <small class="text-center"></small>
+            </a>
+        </li>
+        <li><a [routerLink]="['/dashboard']" [routerLinkActive]="['active']" class="waves-effect"><i class="fa fa-home"></i> <span
+                class="hide-menu">{{'leftNav.Dashboard' | translate }}</span></a></li>
+        <!-- <li class=""><a href="javascript:void(0);" class="waves-effect"><i class="fa fa-envelope-o"></i> <span
+                class="hide-menu"> Mailbox <span class="fa arrow"></span><span
+                class="label label-rouded label-danger pull-right">6</span></span></a>
+        </li> -->
+        <li>
+            <a [routerLink]="['/reservations']" [routerLinkActive]="['active']">
+                <i class="fa fa-edit"></i>
+                <span class="hide-menu"> {{'leftNav.Res' | translate }}</span>
+            </a>
+        </li>
+        <li>
+            <a  [routerLink]="['/parks']" [routerLinkActive]="['active']">
+                <i class="fa fa-car"></i>
+                <span class="hide-menu"> {{'leftNav.Parks' | translate }}</span>
+            </a>
+        </li>
+        <li>
+            <a  [routerLink]="['/places']" [routerLinkActive]="['active']">
+                <i class="fa fa-map-marker"></i>
+                <span class="hide-menu">  {{'leftNav.Places' | translate }}</span>
+            </a>
+        </li>
+        <li>
+          <a  [routerLink]="['/add-admin']" [routerLinkActive]="['active']">
+              <i class="fa fa-user"></i>
+              <span class="hide-menu">  {{'leftNav.Users' | translate }} </span>
+          </a>
+      </li>
+
+    <li>
+      <a  [routerLink]="['/license']" [routerLinkActive]="['active']">
+        <i class="fa fa-user-cog"></i>
+        <span class="hide-menu">  {{'header.license'|translate}} </span>
+
+
+      </a>
+    </li>
+    </ul>
+    
+</div>
